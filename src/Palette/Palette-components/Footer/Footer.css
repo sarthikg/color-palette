@@ -1,0 +1,12 @@
+.Footer {
+    display: flex;
+    height: 5vh;
+    justify-content: flex-end;
+    align-items: center;
+    font-weight: bold;
+}
+
+.Footer-Text {
+    line-height: 5vh;
+    margin-right: 1rem;
+}
