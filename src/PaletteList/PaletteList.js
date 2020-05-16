@@ -28,6 +28,7 @@ const styles = {
     palettes: {
         boxSizing: "border-box",
         width: "100%",
+        height: "20%",
         display: "grid",
         gridTemplateColumns: "repeat(3,30%)",
         gridGap: "5%"
@@ -35,6 +36,11 @@ const styles = {
 }
 
 class PaletteList extends Component{
+
+    goToPalette = (id) => {
+        this.props.history.push(`/palette/${id}`)
+    }
+
     render(){
         const {classes} = this.props
         return(
@@ -46,8 +52,7 @@ class PaletteList extends Component{
                     <div className={classes.palettes}>
                         {this.props.palettes.map(palette=> (
                             <div>
-                                <MiniPalette palette={palette}/>
-                                {/* <Link to={`/palette/${palette.id}`}>{palette.id}</Link> */}
+                                <MiniPalette palette={palette} handleClick={()=>this.goToPalette(palette.id)}/>
                             </div>
                         ))}
                     </div>
