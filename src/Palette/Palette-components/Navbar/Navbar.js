@@ -24,17 +24,24 @@ class Navbar extends Component {
     }
 
     render() {
+
+        let level = ''
+        if(this.props.onChange) {
+            level = <div className="Navbar-Level"><p>Level: {this.props.level}</p></div>
+        }
+
+        let slider = ''
+        if(this.props.onChange) {
+            slider = <div className="Navbar-Slider"><NavSlider onChange={this.props.onChange} level={this.props.level}/></div>
+        }
+
         return (
             <div className="Navbar">
                 <div className="Navbar-Logo">
                 <Link to="/" id="Logo">ReactColorPicker</Link>
                 </div>
-                <div className="Navbar-Level">
-                    <p>Level: {this.props.level}</p>
-                </div>
-                <div className="Navbar-Slider">
-                    <NavSlider onChange={this.props.onChange} level={this.props.level}/>
-                </div>
+                {level}
+                {slider}
                 <div className="Navbar-Dropdown">
                     <DropdownBox onChange={this.codecChange}/>
                 </div>

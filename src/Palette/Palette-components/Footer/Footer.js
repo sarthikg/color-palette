@@ -8,7 +8,6 @@ class Footer extends Component {
             <div className="Footer">
                 <footer className="Footer-Text">
                     {this.props.name}
-                    {/* <span>{this.props.emoji}</span> */}
                 </footer>
             </div>
         )

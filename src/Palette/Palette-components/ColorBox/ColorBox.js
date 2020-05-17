@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
+import {Link} from 'react-router-dom'
 
 import './ColorBox.css'
 
@@ -31,6 +32,12 @@ class ColorBox extends Component {
             codec = hex
         }
 
+        let moreButton = ''
+        if(this.props.more) {
+            moreButton = <Link to={`/palette/${this.props.paletteId}/${id}`}><span className="ColorBox-More">More</span></Link>
+        }
+
+
         return (
             <div className="ColorBox">
                 <div className="ColorBox-Background" style={{background: rgb}}>
@@ -43,7 +50,7 @@ class ColorBox extends Component {
                         <CopyToClipboard text={codec} onCopy={this.changeCopyState}>
                             <button className="ColorBox-Copy-Button">Copy</button>
                         </CopyToClipboard>
-                        <span className="ColorBox-More">More</span>
+                    {moreButton}
                     </div>
                 </div>
                 <div className={`Color-Overlay-Background${copied ? " show" : ""}`} style={{background: rgb}}></div>

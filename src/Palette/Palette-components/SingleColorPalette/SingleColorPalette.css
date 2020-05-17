@@ -1,0 +1,14 @@
+.SingleColorPalette {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.SingleColorPalette-Colorbox {
+    overflow: hidden;
+    height: 90%;
+}
+
+.Back-Button.ColorBox {
+    background-color: black;
+}

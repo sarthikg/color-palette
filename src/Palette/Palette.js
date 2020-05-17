@@ -25,7 +25,7 @@ class Palette extends Component {
     render() {
 
         var Colorboxes = this.props.palette.colors[this.state.level].map((color) => (
-            <Colorbox color={color} key={color.hex} codec={this.state.codec}/>
+            <Colorbox color={color} key={color.hex} codec={this.state.codec} paletteId={this.props.palette.id} more/>
         ))
 
         return (
