@@ -113,6 +113,7 @@
     color: black;
     letter-spacing: 1px;
     font-size: 12px;
+    text-transform: uppercase;
 }
 
 .LightText {

@@ -25,7 +25,7 @@ class App extends Component{
   addPalette = (palette) => {
     console.log(palette)
     console.log('This is from the App')
-    this.setState({palettes: [...this.state.palettes, palette]}, this.syncLocalStorage)
+    this.setState({palettes: [...this.state.palettes, palette]}, this.syncLocalStorage())
   }
 
   syncLocalStorage = () => {
