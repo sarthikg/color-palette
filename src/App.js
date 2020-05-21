@@ -28,6 +28,13 @@ class App extends Component{
     this.setState({palettes: [...this.state.palettes, palette]}, this.syncLocalStorage)
   }
 
+  deletePalette = (id) => {
+    this.setState(
+      st => ({palettes: st.palettes.filter(palette => palette.id !== id)}),
+      this.syncLocalStorage
+    )
+  }
+
   syncLocalStorage = () => {
     window.localStorage.setItem("palettes", JSON.stringify(this.state.palettes))
   }
@@ -36,11 +43,10 @@ class App extends Component{
     return(
       <div className="App">
         <Switch>
-          <Route exact path='/' render={(routeProps) => (<PaletteList palettes={this.state.palettes} {...routeProps}/>)}/>
+          <Route exact path='/' render={(routeProps) => (<PaletteList palettes={this.state.palettes} deletePalette={this.deletePalette} {...routeProps}/>)}/>
           <Route exact path='/palette/new' render={(routeProps) => (<NewPaletteForm addPalette={this.addPalette} {...routeProps} palette={this.state.palettes}/>)}/>
           <Route exact path="/palette/:id" render={(routeProps) => (<Palette palette={generatePalette(this.findPalette(routeProps.match.params.id))} />)}/>
           <Route exact path="/palette/:paletteId/:ColorId" render={(routeProps)=> (<SingleColorPalette {...routeProps} colorId = {routeProps.match.params.ColorId} palette={generatePalette(this.findPalette(routeProps.match.params.paletteId))}/>)} />
-          <Route exact path="/test" render={() => (<SingleColorPalette/>)}/>
         </Switch>
       </div>
     )

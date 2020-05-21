@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { withStyles } from '@material-ui/styles'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 const styles = {
     root: {
@@ -9,8 +10,9 @@ const styles = {
         padding: "0.5rem",
         position: "relative",
         overflow: "hidden",
-        "&:hover": {
-            cursor: "pointer"
+        cursor: "pointer",
+        "&:hover svg" : {
+            opacity: 1
         }
     },
     colors: {
@@ -37,22 +39,46 @@ const styles = {
         margin: "0 auto",
         position: "relative",
         marginBottom: "-4px"
+    },
+    deleteIcon : {
+        color: "white",
+        backgroundColor: "#eb3d30",
+        width: "20px",
+        height: "20px",
+        position: "absolute",
+        right: "0px",
+        top: "0px",
+        padding: "10px",
+        zIndex: "12",
+        opacity: 0,
+        transition: "all 0.2s ease-in-out !important",
+        borderRadius: "5px"
     }
 }
 
-function MiniPalette(props) {
-    const {classes, palette} = props;
-    const MiniColors = palette.colors.map((color) => (
-        <div className={classes.minicolor} key={color.color} style={{backgroundColor:color.color}}/>
-    ))
-    return (
-        <div className={classes.root} onClick={props.handleClick}>
-            <div className={classes.colors}>
-                {MiniColors}
+class MiniPalette extends Component {
+
+    deletePalette = (event) => {
+        event.stopPropagation()
+        this.props.deletePalette()
+        console.log("Deleted")
+    }
+
+    render() {
+        const {classes, palette} = this.props;
+        const MiniColors = palette.colors.map((color) => (
+            <div className={classes.minicolor} key={color.color} style={{backgroundColor:color.color}}/>
+        ))
+        return (
+            <div className={classes.root} onClick={this.props.handleClick}>
+                <DeleteIcon className={classes.deleteIcon} onClick={this.deletePalette}/>
+                <div className={classes.colors}>
+                    {MiniColors}
+                </div>
+                <div className={classes.title}>{palette.paletteName}</div>
             </div>
-            <div className={classes.title}>{palette.paletteName}</div>
-        </div>
-    )
+        )
+    }
 }
 
 export default withStyles(styles)(MiniPalette)
